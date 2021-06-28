@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<style type="text/css">
+#mytable tbody tr {border: #212529 solid 1px;}
+#mytable tbody tr:nth-child(even) td {background-color: #F8F8F8;}
+#mytable tbody tr:nth-child(odd) td {background-color: #F5F5DC;}
+    body { margin:0px; padding:0px; overflow:hidden;width: 100%;height: 100%;}
+</style>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    //使用url路由传递参数title
+        function tijiao(title) {
+          var show = document.getElementById("id4");
+          show.innerHTML = '<div><iframe src="/detail?title='+encodeURIComponent(title)+'" width="1000px" height="825px" scrolling="yes" frameborder="0"></iframe></div>'
+
+        }
+
+
+    </script>
+</head>
+<body >
+<div style="width: 100%;height:100%;position:absolute;" id="id4">
+<table id="mytable" style="width: 100%;height: 100px;border-collapse: collapse ;border-spacing:0;" >
+<thead>
+<tr style="background-color: rgb(248, 248, 248);width: 100%;height: 40px">
+    <td width="100px"><center>序号</center></td>
+    <td width="500px">标题</td>
+    <td width="100px"><center>查看论文</center></td>
+</tr>
+</thead>
+
+    <tbody>
+    {% for item in data1 %}
+    <tr style="width: 100%;height: 38px" id="test">
+        <td width="100px"><center>{{ forloop.counter }}</center></td>
+        <td width="500px">{{ item }}</td>
+        <td width="100px"><center><button class="check" onclick="tijiao('{{ item }}')" >查看</button></center></td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+</div>
+</body>
+</html>

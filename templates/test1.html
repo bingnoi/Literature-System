@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+
+<script language="javascript">
+function tiao(){
+    //评论成功后3秒自动跳转到首页
+    window.location.href = '/redict';
+}
+ setTimeout("tiao()",3000);
+ function changSec(){
+    $("myspan").innerText=parseInt($("myspan").innerText)-1;
+ }
+var mytime=setInterval("changSec()",1000);
+function $(id){
+    return document.getElementById(id);
+}
+</script>
+<h2 align="center">{{ username }}信息修改成功，将在<span id="myspan">3</span>秒后返回到登录页面</h2>
+</body>
+</html>

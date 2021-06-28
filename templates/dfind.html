@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Find</title>
+    <style type="text/css">
+        #id0{margin:auto;height: auto;}
+        #id2{margin-left: 10px;height: 100px}
+        input{align: center}
+        .div1{width: 315px;float:left;height: 500px}
+        .div2{width: 315px;float:left;height: 500px}
+        .div3{width: 315px;float:left;height: 500px}
+    </style>
+</head>
+<body >
+<div id="id0">
+<h2>论文查询</h2>
+</div>
+<div class="div1"></div>
+<div class="div2">
+<form method="post" action="/find">
+    {% csrf_token %}
+    <label><font size="4px"><strong>标题</strong></font></label><br>
+    <div style="height: 10px;width: 315px"></div>
+    <input type="text"  name="title" placeholder="请输入论文标题" style="width:300px;height:24px;"><br>
+    <div style="height: 10px;width: 315px"></div>
+    <!--<label><font size="4px"><strong>密码</strong></font></label><br>
+    <div style="height: 10px;width: 315px"></div>
+    <input type="password"  name="password" placeholder="请在这里输入新密码" style="width:200px;height:24px;"><br>
+    <label><font size="4px"><strong>邮箱</strong></font></label><br>
+    <div style="height: 10px;width: 315px"></div>
+    <input type="email"  name="email" placeholder="请在这里输入新邮箱" style="width:200px;height:24px;"><br>
+    <label><font size="4px"><strong>电话</strong></font></label><br>
+    <div style="height: 10px;width: 315px"></div>
+    <input type="text"  name="phone" placeholder="请在这里输入新电话" style="width:200px;height:24px;"><br>
+    <div style="height: 10px;width: 315px"></div>-->
+    <input type="submit" value="查询" >
+</form>
+</div>
+<div class="div3"></div>
+</body>
+</html>

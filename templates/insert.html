@@ -1,0 +1,56 @@
+<html><!--search.html-->
+<head>
+    <title>评论专区</title>
+    <style type="text/css">
+    	body{background:#ffffff;}
+        #div0{margin:auto;}
+    	#div1{margin:auto;width:35%;height:50%;margin-right: 400px;margin-top: 30px}
+    	#input:hover{width:105px;height:32px;background-color:red;order-color:green;font-size: 20px;text-align: center;}
+    	#input{width:100px;height:30px;margin-left:500px;background-color:#00BBFF;order-color:black;border:2px;display: none;}
+    </style>
+    <script type="text/javascript">
+        function $(id){return document.getElementById(id);}
+        function mouseout() {
+       
+            if ($('QQ').value.length>5) {
+                if ($('Review').value.length!=0){
+                    $('input').style.display="block";
+                    $('p').innerHTML="";
+                    $('p1').innerHTML="";
+                }else{
+                    $('p1').innerHTML="<font style='color:red;font-size:15;'>不能为空</font>";
+                }
+            }else if($('QQ').value.length==0){
+                $('p').innerHTML="<font style='color:red;font-size:15;'>不能为空</font>";
+            }else{
+                $('p').innerHTML="<font style='color:red;font-size:15;'>输入的信息有误</font>";
+            }
+            }
+        
+    </script>
+</head>
+<body>
+    <div id="div0">
+        <h2><i>欢迎留下您宝贵的建议！</i></h2>
+    </div>
+	<div id="div1">
+        <!--
+    <form action="/insert" method="post">{% csrf_token %}
+    	<strong>电话 or QQ</strong><br><br>
+    	<textarea  name='q' style="width:600px;height:25px;margin:auto;border: 0;resize: none;" id="QQ" onblur="mouseout();"></textarea><p id="p"></p><br><br>
+		<strong>留言</strong><br><br>
+		<textarea name='r'  style="width:600px;height:250px;border: 0;resize: none;margin:auto;" id="Review" onblur="mouseout()"></textarea><p id="p1"></p><br/><br/><br>
+		<input type="submit" value="留言" id="input">
+	</form>	
+    -->
+        <form action="http://127.0.0.1:8000/submit"  method="post">{% csrf_token %}
+    	<strong>QQ</strong><br><br>
+    	<textarea  name='q' style="width:600px;height:25px;margin-right: auto;border:solid 1px #000000;resize: none;" id="QQ" onblur="mouseout();"></textarea><p id="p"></p><br><br>
+		<strong>留言</strong><br><br>
+		<textarea name='r'  style="width:600px;height:250px;border:solid 1px #000000;resize: none;margin:auto;" id="Review" onblur="mouseout()"></textarea><p id="p1"></p><br/><br/><br>
+		<input type="submit" value="留言" id="input">
+	</form>
+    </div>
+{{ username }}
+</body>
+</html>

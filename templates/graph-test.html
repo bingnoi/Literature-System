@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>show  Cytoscape.js</title>
+    <style type="text/css">
+        /* cytoscape graph */
+        #cy {
+            height: 1000px;
+            width: 980px;
+            background-color: #f9f9f9;
+            display: block;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/cytoscape/2.3.16/cytoscape.min.js"></script>
+<script>
+        function chakan(title) {
+            var show = document.getElementById("cy");
+            //encodeURIComponent 防止传递参数时不显示符号问题
+            show.innerHTML = '<div><iframe src="find?title=' + encodeURIComponent(title) + '" width="1000px" height="825px" scrolling="yes" frameborder="0"></iframe></div>'
+        }
+        $(function(){
+            var node = {{ node|safe }};
+            var edge = {{ edge|safe }};
+            console.log(edge);
+            var cy = cytoscape({
+              container: document.getElementById('cy'),
+              style: [
+                { selector: 'node[label = "person"]',
+                  css: {'background-color': '#6FB1FC', 'content': 'data(name)','font-size':8}
+                },
+                { selector: 'node[label = "team"]',
+                  css: {'background-color': '#F5A45D', 'content': 'data(name)','font-size':8}
+                },
+                { selector: 'edge',
+                  css: {
+                        'content': 'data(worktitle)', 
+                        'target-arrow-shape': 'triangle',
+                        'width':3,
+                        'line-color':'#ccc',
+                        'font-size':5
+                      }
+                }
+              ],
+              elements: {
+                nodes: node,
+                edges: edge
+              },
+              layout: { name: 'cose'}
+            });
+            // cy.on('tap', 'edge', function(evt){
+            //   var node = evt.target;
+            //   console.log(evt);
+            //   console.log( 'tapped ' + node );
+            //   console.log( 'tapped ' + node.worktitle() );
+            // });
+            cy.on('mouseover',function(event){
+              console.log('hhhhhh');
+              var targetData=event.cyTarget._private.data;
+              // targetData.relationship=targetData.worktitle;
+              // this.data('relationship','fuck you');
+              // this.node.data('relationship','fuck you');
+              console.log('yyyyyy');
+            });
+            cy.on('tap','edge',function(event){
+              // target holds a reference to the originator
+              // of the event (core or element)
+              console.log(event);
+              var my=event.cyTarget._private.data.worktitle;
+              console.log(my);
+              chakan(my);
+              console.log('go!');
+            });
+        });
+    </script>
+
+</head>
+<body>
+<div>{{ val }}知识图谱展示</div>
+    <div id="cy"></div>
+    <div id="id4"></div>
+</body>
+</html>

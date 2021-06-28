@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+
+<script language="javascript">
+function tiao(){
+    //评论成功后3秒自动跳转到评论页面
+    window.location.href = '/insert';
+}
+ setTimeout("tiao()",3000);
+ function changSec(){
+    $("myspan").innerText=parseInt($("myspan").innerText)-1;
+ }
+var mytime=setInterval("changSec()",1000);
+function $(id){
+    return document.getElementById(id);
+}
+</script>
+<h2 align="center">{{ username }}评论成功，将在<span id="myspan">3</span>秒后返回</h2>
+</body>
+</html>

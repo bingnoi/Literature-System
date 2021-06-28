@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <link REL="SHORTCUT ICON" HREF="{% static 'images/favicon.ico' %}"/>
+	<meta charset="utf-8">
+	<title>详细页面</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/titlestyle.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/picturestyle.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"> -->
+    <script type="text/javascript" src="/static/js/jquery.1.4.2-min.js"></script>
+    <!-- <script type="text/javascript" src="/static/js/bootstrap.min.js"></script> -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> 
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style type="text/css">
+        li{list-style:none;}
+        img{border:none;}
+        body{background:#E8E8E8;}
+        /*div{white-space:nowrap;}/* 不准文字换行 */
+		#id0{width: 90%;height: 25px;margin: auto;background-color:black;}
+    /* 时间 */
+        #show{margin: auto; width: 30%;height: 60px;float:left;background:url(/static/images/5.png) repeat-x 100%;color:white;font-size:20px;text-align:center;overflow: hidden;/* 超出后隐藏时间 */}
+        #bgd{width: 90%;height: 18px;background-color: #E8E8E8;margin: auto;}
+		#id2{width: 90%;height: 800px;margin: auto;}
+		#id4{width: 70%;height: 825px;float: left;background: white;}
+            #id4_0l{width: 50%;height:10px;float: left;background-color:#89A4B1;margin-top: 10px;margin-left:10px; }
+            #id4_0r{width:47%;height:10px;float: left;background-color:#89A4B1;margin-top: 10px;margin-left:10px; }
+            #id4_1{width: 50%;height: 530px;float: left; margin-left:10px;border:3px solid #89A4B1;}
+            #id4_2{width: 47%;height: 530px; float: left;margin-left:10px; border:3px solid #89A4B1;}          
+            #id4_3{width: 98%;height: 270px;margin-top: 5px;margin-left:10px;border:3px solid #89A4B1; float: left;}
+                #id4_3l{width: 100%;height: 10px;background-color:#89A4B1;}
+                #id4_3r{width: 100%;height: 260px;}
+		#id5{width: 1%;height: 800px;background-color: #E8E8E8;float: left;}
+		#id6{width: 29%;height: 810px;background-color: white;float: left;min-width:300px;}
+            #id61{width: 100%;height: 400px;background-color: white;}
+                #id61_1{width: 100%;height:6%;background-color: #FFA500;font-size: 20px;color: white;text-align: center;}
+                #id61_2{width: 100%;height:94%;background-color: white;color:black;}
+            #id62{width: 100%;height: 10px;background-color: #E8E8E8;margin: auto;}
+            #id63{width: 100%;height: 400px;background-color: white;}
+                #id63_1{width: 100%;height: 7%;background-color: #FFA500;font-size: 20px;color: white;text-align: center;}
+                #id63_2{width: 100%;height: 84%;background-color: white;color:black;white-space:nowrap;}
+                #id63_3{width: 100%;height: 10%;background-color:#000000;}
+        #bgd1{width: 90%;height: 10px;background-color: #E8E8E8;}
+		#foot{width: 100%;height: 60px;background-color:#89A4B1;text-align:center;margin: auto;font-size:15px;color:white;}
+    /*功能栏特效*/
+        *{margin:0;padding:0;list-style-type:none;}
+        #Menu{width: 90%;height: 60px;margin: auto;}
+        .menu{width: 70%;height: 60px;margin: auto;overflow:hidden;float: left;}
+        .menu ul li{margin: auto;float:left;position:relative;text-align:center;line-height:45px;height:45px;overflow:hidden;}
+        .menu ul li a{margin: auto;position:relative;display:block;width:110px;height:45px;font-size:17px;font-weight:bold;text-decoration:none;cursor:pointer;}
+        .menu ul li a span{margin: auto;position:absolute;left:0;width:110px;}
+        .menu ul li a span.out{margin: auto;top:0px;}
+        .menu ul li a span.over,.menu ul li a span.bg{margin: auto;top:-45px;}
+        #menu2{margin: auto;background:#89A4B1;}
+        #menu2 ul li a{margin: auto;color:#FFF;}
+        #menu2 ul li a span.over{margin: auto;background:#A9CC2D;color:#FFF;}
+        .menu ul{margin-top:8px;margin-left:150px;}
+        #p_new{font-size: 16px;overflow: hidden;}
+
+    /*论文显示*/
+        #tab{width: 100%;height: 75px; font-size: 13px;}
+    /*新闻渲染*/
+        #id63_2 ul{display: block;}  
+        #id63_2 ul li{transition: transform 0.25s ease;width: 100%;height: 40px;line-height: 40px; text-align: center;margin-top: 2px; background-color: #00b5e1;list-style: none;}      
+        #id63_2 ul li:hover{transform: scale(1.1,1.1);box-shadow: 0 0 10px #0000ff;cursor: pointer;}     
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    //生成新内容的js
+	function change(){
+        //算法显示图片,鼠标滑过图片放大
+		// id61.innerHTML="<img src=\"/static/img/b.png\" width=\"100%\" height=\"275px\" />";
+        id61.innerHTML='<div id="id63_1">\
+                                        推荐论文\
+            </div><div class="list-group">\
+                        <button type="button" class="list-group-item">大数据驱动的网络信息平面</button>\
+                        <button type="button" class="list-group-item">可信固态硬盘:大数据安全的新基础</button>\
+                        <button type="button" class="list-group-item">BigDataBench:开源的大数据系统评测基准</button>\
+                        <button type="button" class="list-group-item">大数据环境下支持概率数据范围查询索引的研究</button>\
+                        <button type="button" class="list-group-item">面向网络大数据的知识融合方法综述</button>\
+                        <button type="button" class="list-group-item">大数据访问控制研究</button>\
+                        <button type="button" class="list-group-item">个人数据银行——一种基于银行架构的个人大数据资产管理与增值服务的新模式</button>\
+                        <button type="button" class="list-group-item">分布式大数据多函数依赖冲突检测</button>\
+                        <button type="button" class="list-group-item">基于分布式数据流的大数据分类模型和算法</button>\
+                       \
+                        </div>'
+	}
+    //导航栏的js
+    $(document).ready(function(){
+    $("#menu2 li a").wrapInner('<span class="out"></span>');
+    $("#menu2 li a").each(function(){
+        $('<span class="over">' + $(this).text() + '</span>').appendTo(this);
+    });
+    $("#menu2 li a").hover(function(){
+        $(".out",this).stop().animate({'top':'45px'},200);
+        $(".over",this).stop().animate({'top':  '0px'},200);
+    },function(){
+        $(".out",this).stop().animate({'top':'0px'},200);
+        $(".over",this).stop().animate({'top':'-45px'},200);
+    });
+
+    });
+    //显示系统时间
+    window.onload = function() {  
+        var show = document.getElementById("show");
+        if (show.text==null) {show.innerHTML = "LOADING...";}
+        setInterval(function() {   
+            var time = new Date();   
+            var m = time.getMonth() + 1;   
+            var t = time.getFullYear() + "-" + m + "-"+ time.getDate() + " " + time.getHours() + ":"+ time.getMinutes() + ":" + time.getSeconds();
+            show.innerHTML = t;  
+        }, 1000); 
+    };
+    //图片更换部分
+    $(function(){
+    var oDiv = $("#play");  //外部盒子
+    var count = $("#play ul li").length;  //内部图片数量
+    var countwidth = $("#play ul li").width();  //图片边框宽度
+    var oUl = $("#play ul").css("width",count*countwidth);  //ul li总宽度
+    var now = 0;
+    var next = $("#next");
+    var prev = $("#prev");
+      //点击按钮数量
+    for(var i = 0; i < count; i++){
+        $("#play ol").append("<li>" + Number(i+1) + "</li>");
+        $("#play ol li:first").addClass("active");
+    }
+      //左右点击图片获取
+    var nI = $("#play ul li:nth-child(2)").find("img").attr("src");
+    $(".nextImg img").attr("src",nI);
+    var pI = $("#play ul li:last-child").find("img").attr("src");
+    $(".prevImg img").attr("src",pI);
+      //按钮点击事件
+    var aBtn = $("#play ol li");
+    aBtn.each(function(index){
+        $(this).click(function(){
+            clearInterval(timer);
+            tab(index);
+            nextImg();
+            prevImg();
+            timer=setInterval(autoRun,2000);
+        });
+    });
+      //图片循环事件
+    function tab(index){
+        now = index;
+        aBtn.removeClass("active");
+        aBtn.eq(index).addClass("active");
+        oUl.stop(true,false).animate({"left":-countwidth * now},400);
+    }
+      //下一张按钮图片切换
+    function nextImg(){
+        var d = $("#play ul li").find("img").eq(now+1).attr("src");
+        var nI = $("#play ul li:nth-child(1)").find("img").attr("src");
+        $(".nextImg").find("img").attr("src",d);
+        if(now==count-1){
+            $(".nextImg").find("img").attr("src",nI);
+        }
+    }
+      //上一张图片按钮切换
+    function prevImg(){
+        var f = $("#play ul li").find("img").eq(now-1).attr("src");
+        $(".prevImg").find("img").attr("src",f);
+    }
+    
+      //下一张点击事件
+    next.click(function(){
+        clearInterval(timer);
+        now++;
+        if(now==count){
+            now=0;
+        }
+        tab(now);
+        nextImg();
+        prevImg();
+        timer=setInterval(autoRun, 100000000);
+    });
+      //上一张点击事件
+    prev.click(function(){
+        clearInterval(timer);
+        now--;
+        if(now==-1){
+            now=count-1;
+        }
+        tab(now);
+        nextImg();
+        prevImg();
+        timer=setInterval(autoRun, 2000);
+    });
+      //自动轮播定义
+    function autoRun(){
+        now++;
+        if(now==count){
+            now=0;
+        }
+        tab(now);
+        nextImg();
+        prevImg();
+    };
+    var timer=setInterval(autoRun, 100000000);
+});
+
+//可视化展示
+function ShowMap(){
+    var show = document.getElementById("id4");
+    show.innerHTML ='<div id="id4_0l"></div><div id="id4_0r"></div>' +
+'<div id="id4_1"><iframe name="iframe" src="chinamap.html" width="100%" height="550px" scrolling="no" frameborder="0">地图</iframe></div>'+
+'<div id="id4_2"><iframe src="echarts.html" width="100%" height="550px" scrolling="no" frameborder="0"></iframe></div>'+
+'<div id="id4_3"><div id="id4_3l"></div><div id="id4_3r"><h3><strong style="color:#6495ED;">{{val}}</strong>概述:</h3><font style="font-size:17px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{text}}</font></div></div>'
+}
+//留言
+function LeavingMessage() {
+    var show = document.getElementById("id4");
+    show.innerHTML = '<div><iframe src="insert" width="100%" height="800px" scrolling="no" frameborder="0"></iframe></div>'
+}
+
+//知识图谱
+function ShowData(){
+    var show = document.getElementById("id4");
+    show.innerHTML = '<div><iframe src="graphnpm" width="100%" height="800px" scrolling="no" frameborder="0"></iframe></div>'
+}
+
+//推荐论文
+function Recommend() {
+    var show = document.getElementById("id4");
+    show.innerHTML = '<div><iframe src="recommend" width="100%" height="800px" scrolling="no" frameborder="0"></iframe></div>'
+}
+
+//个人中心
+function Personinfo() {
+    var show = document.getElementById("id4");
+    show.innerHTML = '<div><iframe src="info" width="100%" height="800px" scrolling="no" frameborder="0"></iframe></div>'
+}
+
+//论文查找
+function DataFind() {
+    var show = document.getElementById("id4");
+    show.innerHTML = '<div><iframe src="dfind" width="100%" height="800px" scrolling="no" frameborder="0"></iframe></div>'
+}
+//点击查看论文
+function chakan(title) {
+    var show = document.getElementById("id4");
+    //encodeURIComponent 防止传递参数时不显示符号问题
+    show.innerHTML = '<div><iframe src="find?title=' + encodeURIComponent(title) + '" width="1000px" height="825px" scrolling="yes" frameborder="0"></iframe></div>'
+}
+//tr变色
+$(document).ready(function(){
+  $("tr:even").css("background-color","#F8F8F8");
+  $("tr:odd ").css("background-color","#F5F5DC");
+});
+//显示隐藏文字
+function removeClassType($this) {
+    $($this).attr("title",$this.innerText);
+}
+</script>
+<div style="min-width:1500px;">
+<div style="height: 20px;width: 1500px">
+    <h5 style="margin-left: 78px">
+        欢迎您，{{ username }}&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://127.0.0.1:8000/">退出登录</a>
+    </h5>
+</div>
+<div id="id0"><marquee onmouseover="stop()" onmouseout="start()"><strong style="color:white;">基于文献知识图谱的智能推荐系统</strong></marquee></div>
+<div class="play" id="play">
+    <a href="javascript:" id="next">>><div class="nextImg"><img width="80" height="54" src="" /></div></a>
+    <a href="javascript:" id="prev"><<<div class="prevImg"><img width="80" height="54" src="" /></div></a>
+    <ol></ol>
+        <ul>
+            <li><a href="#"><img src="/static/images/66.jpg"/></a></li>
+            <li><a href="#"><img src="/static/images/2.png" /></a></li>
+            <li><a href="#"><img src="/static/images/1.png"/></a></li>
+        </ul>
+</div>
+
+<div id="Menu">
+    <div id="menu2" class="menu">
+        <ul>
+            <li><a href="searchfirst">首页</a></li>
+{#            href="chinamap" target="iframe"#}
+            <li><a  onclick="ShowMap()">可视化展示</a></li>
+            <li><a onclick="Recommend()">推荐论文</a></li>
+            <li><a onclick="ShowData()">知识图谱</a></li>
+            <li><a onclick="LeavingMessage()">联系我们</a></li>
+        <!--    <li><a onclick="DataFind()">论文查找</a></li> -->
+            <li><a onclick="Personinfo()">个人中心</a></li>
+        </ul>
+    </div>
+    <div id="show" style="padding-top:20px;"></div>
+</div>
+<div id="bgd"></div>
+<div id="id2">
+	<div id="id4">
+    <div style="width:100%;height:93%;">
+    <table class="table" style=" table-layout:fixed;  overflow:hidden;white-space:nowrap;word-break:keep-all;">
+        <thead>
+          <tr>
+            <th style="width:50px;"><center>序号</center></th>
+            <th style="width:300px;"><center>标题</center></th>
+            <th style="width:250px;"><center>作者</center></th>
+            <th style="width:200px;"><center>单位</center></th>
+            <th style="width:100px;"><center>学报</center></th>
+            <th style="width:100px;"><center>时间</center></th>
+          </tr>
+        </thead>
+        <tbody>
+
+           {%for i in page%}
+            <tr>
+                <th>{{forloop.counter}}</th>
+                <td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" onmousemove="removeClassType(this)" onclick="chakan('{{ i.title }}')">{{i.title}}</td>
+                <td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" onmousemove="removeClassType(this)">{{i.author}}</td>
+                <td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" onmousemove="removeClassType(this)">{{i.school}}</td>
+                <td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" onmousemove="removeClassType(this)">{{i.name}}</td>
+                <td onmousemove="removeClassType(this)">{{i.date}}</td>
+            </tr>
+             {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div style="width:100%;height:7%;margin: auto;">
+       <center>
+            <ul class="pagination">
+            {# 如果当前页还有上一页 #}
+            {% if page.has_previous %}
+            <li>
+                {# 点击a标签，跳转到上一页链接 ?index  为地址后面拼接的参数 #}
+                <a href="page?index={{page.previous_page_number}}">上一页</a>
+            </li>
+            {% else %}
+            {# 如果没有上一页， 则上一页按钮不可点击 #}
+            <li >
+                <a href="page">上一页</a>
+            </li>
+            {% endif %}
+
+<!--             {% for page_number in paginator.page_range %}
+            {# 获取当前页的页码 #}
+            {% if page_number == page.number %}
+                {# 如果是当前页的话，选中 #}
+                <li class="active">
+                    <a href="page?index={{page_number}}">{{page_number}}</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="page?index={{page_number}}">{{page_number}}</a>
+                </li>
+            {% endif %}
+            {% endfor %} -->
+            <li>
+                    <a>Page {{page.number}} Of {{ paginator.num_pages }}</a>
+            </li>
+            {% if page.has_next %}
+            <li>
+                <a href="page?index={{page.next_page_number}}">下一页</a>
+            </li>
+            {% else %}
+            <li >
+                <a href="page">下一页</a>
+            </li>
+            {% endif %}
+            </ul>
+        </center>    
+    </div>
+    </div><!-- id4-->
+	<div id="id5"></div>
+	<div id="id6">
+        <div id="id61">
+            <div id="id61_1">
+                学报类别    
+            </div>
+            <div id="id61_2"><iframe  src="echarts-cirle.html" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
+            </div>
+        </div>
+        <div id="id62"></div>  
+        <div id="id63">
+            <div id="id63_1">
+                相关新闻
+            </div>
+            <div id="id63_2">
+                <ul style="list-style: disc;">
+                {% for j in Infor %}
+                {% for i in j %}
+                {% if forloop.first %}
+                <li><a href="{{i}}" style="text-decoration:none;"> 
+                {% else %} 
+                <p id="p_new">{{i}}</p>
+                </a></li>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+                </ul>
+            </div>
+            <div id="id63_3">
+                <marquee onmouseover="stop()" onmouseout="start()"><strong style="color:white;line-height: 3;">广告&nbsp版权由新浪新闻所有</strong></marquee>
+            </div>
+        </div>    
+    </div>
+	
+</div>
+<div id="bgd1"></div>
+<div id="foot" style="margin-top:20px;"><br>版权:基于文献知识图谱的智能推荐系统</div>
+</div>
+</body>
+</html>

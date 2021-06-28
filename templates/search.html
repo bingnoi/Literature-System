@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load staticfiles %}
+    <link REL="SHORTCUT ICON" HREF="{% static 'images/favicon.ico' %}"/>
+<meta charset="UTF-8">
+<title>基于文献知识图谱的智能推荐系统</title>
+<style type="text/css">
+	#div1{margin:auto;width:70%;height:100%;}
+		#div2{margin:auto;width:100%;height:33%;}
+		#div3{margin:auto;width:100%;height:40%;padding-top:70px;}
+			#div3_1{margin:auto;width:100%;height:50%;padding-left: 20px;}
+			#div3_2{margin:auto;width:100%;height:50%;padding-top: 35px;}
+		#div4{margin:auto;width:100%;height:30px;padding-top:50px;}
+	#input1{margin:auto;width:70%;height:30px;border-radius: 2%;}
+	#input2{margin:auto;width:10%;height:35px;border-radius:20%;background-color:#66b2e2;border-color:black;border:2px;}
+	#img1{margin:auto;width:480px;height:50px;}
+	#a{margin:auto;text-decoration:none;font-size:5;color:black;}
+	div{white-space:nowrap;}
+	body{text-align:center;}
+</style>
+</head>
+<body>
+<p align="right"><i><b>欢迎用户{{ username }},<a href="http://127.0.0.1:8000/">注销登陆</a></b></i></p>
+<div id="div1">
+<div id="div2"></div>
+<div id="div3">
+	<img src="{% static 'img/logo.png' %}">
+	<div id="div3_1"><font size="4"><b>基于文献知识图谱的智能推荐系统</b></font></div>
+	<div id="div3_2">
+		<form action="/search" method="get">{% csrf_token %}
+		<input type="text" name='q' id="input1">&nbsp;
+		<input type="submit" value="搜索" id="input2">
+		</form>	
+	</div>
+</div>
+	<div id="div4"><pre>版权所有:基于文献知识图谱的智能推荐系统
+	</pre></div>
+</div>
+</body>
+</html>
